@@ -104,7 +104,7 @@ void Program2_4::init(GLFWwindow* window) {
 void Program2_4::display(GLFWwindow* window, double currentTime) {
 	glUseProgram(renderingProgram);
 	glPointSize(40.0f);
-	glDrawArrays(GL_POINTS, 0, 1);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
 Program2_4::Program2_4() {
