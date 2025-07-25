@@ -7,7 +7,7 @@ int main() {
 	//Program2_1 y = Program2_1();
 	//y.execute();
 
-	Program2_3 x = Program2_3();
+	Program2_4 x = Program2_4();
 	x.execute();
 }
 

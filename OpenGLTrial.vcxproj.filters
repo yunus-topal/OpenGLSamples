@@ -16,6 +16,9 @@
     <Filter Include="Header Files\Chapter2">
       <UniqueIdentifier>{e0f9fcf2-4b49-47d2-873d-415a7701434d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Chapter2">
+      <UniqueIdentifier>{67b05a59-5de6-46b9-8c55-4e11c59d0427}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program2_1.cpp">
@@ -28,6 +31,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="program2_3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="program2_4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,5 +50,16 @@
     <ClInclude Include="program2_3.h">
       <Filter>Header Files\Chapter2</Filter>
     </ClInclude>
+    <ClInclude Include="program2_4.h">
+      <Filter>Header Files\Chapter2</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="vertShader_2_4.glsl">
+      <Filter>Resource Files\Chapter2</Filter>
+    </None>
+    <None Include="fragShader_2_4.glsl">
+      <Filter>Resource Files\Chapter2</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -131,12 +131,18 @@
     <ClCompile Include="program2_1.cpp" />
     <ClCompile Include="program2_2.cpp" />
     <ClCompile Include="program2_3.cpp" />
+    <ClCompile Include="program2_4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chapter2.h" />
     <ClInclude Include="program2_1.h" />
     <ClInclude Include="program2_2.h" />
     <ClInclude Include="program2_3.h" />
+    <ClInclude Include="program2_4.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragShader_2_4.glsl" />
+    <None Include="vertShader_2_4.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
