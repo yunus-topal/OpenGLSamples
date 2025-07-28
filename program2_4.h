@@ -12,6 +12,9 @@ private:
 	GLuint renderingProgram;
 	GLuint vao[numVAOs];
 
+	float x = 0.0f;
+	float inc = 0.01f;
+
 	void printShaderLog(GLuint shader);
 	void printProgramLog(int prog);
 	bool checkOpenGLError();
