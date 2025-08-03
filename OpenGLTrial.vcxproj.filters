@@ -19,6 +19,12 @@
     <Filter Include="Resource Files\Chapter2">
       <UniqueIdentifier>{67b05a59-5de6-46b9-8c55-4e11c59d0427}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{90fc3978-046c-4a38-aef1-a9fdb317e7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{1de5b9a4-63f3-4940-86c2-33f019792fae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program2_1.cpp">
@@ -36,6 +42,9 @@
     <ClCompile Include="program2_4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="transform_utils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program2_2.h">
@@ -52,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="program2_4.h">
       <Filter>Header Files\Chapter2</Filter>
+    </ClInclude>
+    <ClInclude Include="transform_utils.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
