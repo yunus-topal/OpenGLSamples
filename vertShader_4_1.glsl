@@ -8,5 +8,7 @@
 
  void main(void)
  { 
-	gl_Position = p_matrix * mv_matrix * vec4(position,1.0);
+    vec4 initialPos = vec4(position, 1.0);
+	initialPos.x += offset; // Apply the offset to the x-coordinate
+	gl_Position = p_matrix * mv_matrix * initialPos;
  }

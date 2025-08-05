@@ -59,8 +59,8 @@ void Program4_1::init(GLFWwindow* window) {
 }
 void Program4_1::display(GLFWwindow* window, double currentTime) {
 	glClear(GL_DEPTH_BUFFER_BIT);
-	//glClearColor(0.0, 0.0, 0.0, 1.0);
-	//glClear(GL_COLOR_BUFFER_BIT);
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glClear(GL_COLOR_BUFFER_BIT);
 	glUseProgram(renderingProgram);
 
 	// get the uniform variables for the MV and projection matrices
@@ -86,18 +86,17 @@ void Program4_1::display(GLFWwindow* window, double currentTime) {
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
 
+	x += inc;
+	if (x > 1.0f) inc = -0.01f;
+	if (x < -1.0f) inc = 0.01f;
+	GLuint offsetLoc = glGetUniformLocation(renderingProgram, "offset");
+	glProgramUniform1f(renderingProgram, offsetLoc, x);
+
+
 	// adjust OpenGL settings and draw model
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
-
-	//x += inc;
-	//if (x > 1.0f) inc = -0.01f;
-	//if (x < -1.0f) inc = 0.01f;
-	//GLuint offsetLoc = glGetUniformLocation(renderingProgram, "offset");
-	//glProgramUniform1f(renderingProgram, offsetLoc, x);
-
-	//glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
 Program4_1::Program4_1() {
