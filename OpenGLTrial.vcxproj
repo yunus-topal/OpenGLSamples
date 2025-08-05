@@ -127,19 +127,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="log_utils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="program2_1.cpp" />
     <ClCompile Include="program2_2.cpp" />
     <ClCompile Include="program2_3.cpp" />
     <ClCompile Include="program2_4.cpp" />
+    <ClCompile Include="program4_1.cpp" />
     <ClCompile Include="transform_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chapter2.h" />
+    <ClInclude Include="chapter4.h" />
+    <ClInclude Include="log_utils.h" />
     <ClInclude Include="program2_1.h" />
     <ClInclude Include="program2_2.h" />
     <ClInclude Include="program2_3.h" />
     <ClInclude Include="program2_4.h" />
+    <ClInclude Include="program4_1.h" />
     <ClInclude Include="transform_utils.h" />
   </ItemGroup>
   <ItemGroup>

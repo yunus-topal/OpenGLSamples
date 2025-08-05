@@ -1,4 +1,5 @@
 #include <iostream>
+#include "chapter4.h"
 #include "chapter2.h"
 #include "transform_utils.h"
 
@@ -8,9 +9,7 @@ int main() {
 	//Program2_1 y = Program2_1();
 	//y.execute();
 
-	glm::mat4 translate_matrix = buildTranslate(1.0f, 2.0f, 3.0f);
-
-	Program2_4 x = Program2_4();
+	Program4_1 x = Program4_1();
 	x.execute();
 }
 

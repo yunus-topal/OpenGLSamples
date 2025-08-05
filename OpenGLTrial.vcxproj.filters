@@ -25,24 +25,39 @@
     <Filter Include="Header Files\utils">
       <UniqueIdentifier>{1de5b9a4-63f3-4940-86c2-33f019792fae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Chapter2">
+      <UniqueIdentifier>{1d2c6340-3bab-4c4a-beb7-195506057941}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Chapter4">
+      <UniqueIdentifier>{4acfbdbe-da56-4e35-9c73-cf189d5481b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter4">
+      <UniqueIdentifier>{c54ea918-3b63-4f11-a3e2-6e84b64f6acb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="program2_1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="transform_utils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="program2_1.cpp">
+      <Filter>Source Files\Chapter2</Filter>
+    </ClCompile>
     <ClCompile Include="program2_2.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Chapter2</Filter>
     </ClCompile>
     <ClCompile Include="program2_3.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Chapter2</Filter>
     </ClCompile>
     <ClCompile Include="program2_4.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Chapter2</Filter>
     </ClCompile>
-    <ClCompile Include="transform_utils.cpp">
+    <ClCompile Include="program4_1.cpp">
+      <Filter>Source Files\Chapter4</Filter>
+    </ClCompile>
+    <ClCompile Include="log_utils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,6 +78,15 @@
       <Filter>Header Files\Chapter2</Filter>
     </ClInclude>
     <ClInclude Include="transform_utils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="program4_1.h">
+      <Filter>Header Files\Chapter4</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter4.h">
+      <Filter>Header Files\Chapter4</Filter>
+    </ClInclude>
+    <ClInclude Include="log_utils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
