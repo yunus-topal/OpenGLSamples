@@ -3,18 +3,6 @@
 using namespace std;
 
 
-string Program4_1::readShaderSource(const char* filePath) {
-	string content;
-	ifstream fileStream(filePath, ios::in);
-	string line = "";
-	while (!fileStream.eof()) {
-		getline(fileStream, line);
-		content.append(line + "\n");
-	}
-	fileStream.close();
-	return content;
-}
-
 GLuint Program4_1::createShaderProgram() {
 	GLint vertCompiled;
 	GLint fragCompiled;
@@ -23,8 +11,8 @@ GLuint Program4_1::createShaderProgram() {
 	GLuint vShader = glCreateShader(GL_VERTEX_SHADER);
 	GLuint fShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-	string vertShaderStr = readShaderSource("vertShader_2_4.glsl");
-	string fragShaderStr = readShaderSource("fragShader_2_4.glsl");
+	string vertShaderStr = file_utils::readShaderSource("vertShader_4_1.glsl");
+	string fragShaderStr = file_utils::readShaderSource("fragShader_4_1.glsl");
 
 	const char* vertShaderSrc = vertShaderStr.c_str();
 	const char* fragShaderSrc = fragShaderStr.c_str();
@@ -62,41 +50,69 @@ GLuint Program4_1::createShaderProgram() {
 
 	return vfProgram;
 }
+
 void Program4_1::init(GLFWwindow* window) {
 	renderingProgram = createShaderProgram();
-	glGenVertexArrays(numVAOs, vao);
-	glBindVertexArray(vao[0]);
+	cameraX = 0.0f; cameraY = 0.0f; cameraZ = 8.0f;
+	cubeLocX = 0.0f; cubeLocY = -2.0f; cubeLocZ = 0.0f;
+	setupVertices();
 }
 void Program4_1::display(GLFWwindow* window, double currentTime) {
 	glClear(GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0, 0.0, 0.0, 1.0);
-	glClear(GL_COLOR_BUFFER_BIT);
-
+	//glClearColor(0.0, 0.0, 0.0, 1.0);
+	//glClear(GL_COLOR_BUFFER_BIT);
 	glUseProgram(renderingProgram);
-	glPointSize(40.0f);
 
-	x += inc;
-	if (x > 1.0f) inc = -0.01f;
-	if (x < -1.0f) inc = 0.01f;
-	GLuint offsetLoc = glGetUniformLocation(renderingProgram, "offset");
-	glProgramUniform1f(renderingProgram, offsetLoc, x);
+	// get the uniform variables for the MV and projection matrices
+	mvLoc = glGetUniformLocation(renderingProgram, "mv_matrix");
+	pLoc = glGetUniformLocation(renderingProgram, "p_matrix");
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	// build perspective matrix
+	glfwGetFramebufferSize(window, &width, &height);
+	aspect = (float)width / (float)height;
+	pMat = glm::perspective(1.0472f, aspect, 0.1f, 1000.0f); // 1.0472 radians = 60 degrees
+
+	// build view matrix, model matrix, and model-view matrix
+	vMat = glm::translate(glm::mat4(1.0f), glm::vec3(-cameraX, -cameraY, -cameraZ));
+	mMat = glm::translate(glm::mat4(1.0f), glm::vec3(cubeLocX, cubeLocY, cubeLocZ));
+	mvMat = vMat * mMat;
+
+	// copy perspective and MV matrices to corresponding uniform variables
+	glUniformMatrix4fv(mvLoc, 1, GL_FALSE, glm::value_ptr(mvMat));
+	glUniformMatrix4fv(pLoc, 1, GL_FALSE, glm::value_ptr(pMat));
+
+	// associate VBO with the corresponding vertex attribute in the vertex shader
+	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(0);
+
+	// adjust OpenGL settings and draw model
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	//x += inc;
+	//if (x > 1.0f) inc = -0.01f;
+	//if (x < -1.0f) inc = 0.01f;
+	//GLuint offsetLoc = glGetUniformLocation(renderingProgram, "offset");
+	//glProgramUniform1f(renderingProgram, offsetLoc, x);
+
+	//glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
 Program4_1::Program4_1() {
-	std::cout << "Program 2_3 class constructor" << std::endl;
+	std::cout << "Program 4_1 class constructor" << std::endl;
 }
 
 Program4_1::~Program4_1() {
-	std::cout << "Program2_3 class destructor" << std::endl;
+	std::cout << "Program4_1 class destructor" << std::endl;
 }
 
 void Program4_1::execute() {
 	if (!glfwInit()) { exit(EXIT_FAILURE); }
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	GLFWwindow* window = glfwCreateWindow(600, 800, "Chapter2 - program1", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(600, 800, "Chapter4 - program1", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	if (glewInit() != GLEW_OK) { exit(EXIT_FAILURE); }
 	glfwSwapInterval(1);
@@ -109,4 +125,21 @@ void Program4_1::execute() {
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	exit(EXIT_SUCCESS);
+}
+
+void Program4_1::setupVertices(void) {
+	// 36 vertices, 12 triangles, makes 2x2x2 cube placed at origin
+	float vertexPositions[108] = { -1.0f,  1.0f, -1.0f, -1.0f, -1.0f, -1.0f, 1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f, 1.0f,  1.0f, -1.0f, -1.0f,  1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f, 1.0f, -1.0f,  1.0f, 1.0f,  1.0f, -1.0f,
+		 1.0f, -1.0f,  1.0f, 1.0f,  1.0f,  1.0f, 1.0f,  1.0f, -1.0f,
+		 1.0f, -1.0f,  1.0f, -1.0f, -1.0f,  1.0f, 1.0f,  1.0f,  1.0f,-1.0f, -1.0f,  1.0f, -1.0f,  1.0f,  1.0f, 1.0f,  1.0f,  1.0f,-1.0f, -1.0f,  1.0f, -1.0f, -1.0f, -1.0f, -1.0f,  1.0f,  1.0f,-1.0f, -1.0f, -1.0f, -1.0f,  1.0f, -1.0f, -1.0f,  1.0f,  1.0f,-1.0f, -1.0f,  1.0f,  1.0f, -1.0f,  1.0f,  1.0f, -1.0f, -1.0f,
+		 1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f,  1.0f,-1.0f,  1.0f, -1.0f, 1.0f,  1.0f, -1.0f, 1.0f,  1.0f,  1.0f,
+		 1.0f,  1.0f,  1.0f, -1.0f,  1.0f,  1.0f, -1.0f,  1.0f, -1.0f
+	};
+	glGenVertexArrays(1, vao);
+	glBindVertexArray(vao[0]);
+	glGenBuffers(numVBOs, vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexPositions), vertexPositions, GL_STATIC_DRAW);
 }

@@ -34,6 +34,9 @@
     <Filter Include="Header Files\Chapter4">
       <UniqueIdentifier>{c54ea918-3b63-4f11-a3e2-6e84b64f6acb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Chapter4">
+      <UniqueIdentifier>{16c6df8a-9b99-4414-9595-73f5d6feb2d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -58,6 +61,9 @@
       <Filter>Source Files\Chapter4</Filter>
     </ClCompile>
     <ClCompile Include="log_utils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="file_utils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,6 +95,12 @@
     <ClInclude Include="log_utils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="fragShader_4_1.glsl">
+      <Filter>Resource Files\Chapter4</Filter>
+    </ClInclude>
+    <ClInclude Include="file_utils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertShader_2_4.glsl">
@@ -96,6 +108,9 @@
     </None>
     <None Include="fragShader_2_4.glsl">
       <Filter>Resource Files\Chapter2</Filter>
+    </None>
+    <None Include="vertShader_4_1.glsl">
+      <Filter>Resource Files\Chapter4</Filter>
     </None>
   </ItemGroup>
 </Project>

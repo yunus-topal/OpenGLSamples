@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="file_utils.cpp" />
     <ClCompile Include="log_utils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="program2_1.cpp" />
@@ -139,6 +140,8 @@
   <ItemGroup>
     <ClInclude Include="chapter2.h" />
     <ClInclude Include="chapter4.h" />
+    <ClInclude Include="file_utils.h" />
+    <ClInclude Include="fragShader_4_1.glsl" />
     <ClInclude Include="log_utils.h" />
     <ClInclude Include="program2_1.h" />
     <ClInclude Include="program2_2.h" />
@@ -150,6 +153,7 @@
   <ItemGroup>
     <None Include="fragShader_2_4.glsl" />
     <None Include="vertShader_2_4.glsl" />
+    <None Include="vertShader_4_1.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
