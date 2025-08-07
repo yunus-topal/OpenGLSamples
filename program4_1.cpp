@@ -25,7 +25,8 @@ void Program4_1::display(GLFWwindow* window, double currentTime) {
 
 	// build view matrix, model matrix, and model-view matrix
 	vMat = glm::translate(glm::mat4(1.0f), glm::vec3(-cameraX, -cameraY, -cameraZ));
-	mMat = glm::translate(glm::mat4(1.0f), glm::vec3(cubeLocX, cubeLocY, cubeLocZ));
+	//mMat = glm::translate(glm::mat4(1.0f), glm::vec3(cubeLocX, cubeLocY, cubeLocZ));
+	mMat = moveCube(currentTime);
 	mvMat = vMat * mMat;
 
 	// copy perspective and MV matrices to corresponding uniform variables
@@ -36,13 +37,6 @@ void Program4_1::display(GLFWwindow* window, double currentTime) {
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(0);
-
-	x += inc;
-	if (x > 1.0f) inc = -0.01f;
-	if (x < -1.0f) inc = 0.01f;
-	GLuint offsetLoc = glGetUniformLocation(renderingProgram, "offset");
-	glProgramUniform1f(renderingProgram, offsetLoc, x);
-
 
 	// adjust OpenGL settings and draw model
 	glEnable(GL_DEPTH_TEST);
@@ -92,4 +86,16 @@ void Program4_1::setupVertices(void) {
 	glGenBuffers(numVBOs, vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexPositions), vertexPositions, GL_STATIC_DRAW);
+}
+
+glm::mat4 Program4_1::moveCube(double currentTime)  {
+	auto tMat = glm::translate(glm::mat4(1.0f),
+		glm::vec3(sin(0.35f * currentTime) * 2.0f, cos(0.52f * currentTime) * 2.0f, sin(0.7f * currentTime) * 2.0f));
+	auto rMat = glm::rotate(glm::mat4(1.0f), 1.75f * (float)currentTime, glm::vec3(0.0f, 1.0f, 0.0f));
+	rMat = glm::rotate(rMat, 1.75f * (float)currentTime, glm::vec3(1.0f, 0.0f, 0.0f));
+	rMat = glm::rotate(rMat, 1.75f * (float)currentTime, glm::vec3(0.0f, 0.0f, 1.0f));
+	// the 1.75 adjusts the rotation speed
+	mMat = tMat * rMat;
+
+	return mMat;
 }

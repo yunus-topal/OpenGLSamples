@@ -31,8 +31,7 @@ private:
 	float inc = 0.01f;  
 	
 	void setupVertices(void);
-	std::string readShaderSource(const char* filePath);
-	GLuint createShaderProgram();  
+	glm::mat4 moveCube(double currentTime);
 	void init(GLFWwindow* window);  
 	void display(GLFWwindow* window, double currentTime);  
 
