@@ -66,6 +66,9 @@
     <ClCompile Include="file_utils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="shader_utils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program2_2.h">
@@ -99,6 +102,12 @@
       <Filter>Resource Files\Chapter4</Filter>
     </ClInclude>
     <ClInclude Include="file_utils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="shader_utils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>

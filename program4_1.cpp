@@ -2,57 +2,8 @@
 
 using namespace std;
 
-
-GLuint Program4_1::createShaderProgram() {
-	GLint vertCompiled;
-	GLint fragCompiled;
-	GLint linked;
-
-	GLuint vShader = glCreateShader(GL_VERTEX_SHADER);
-	GLuint fShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-	string vertShaderStr = file_utils::readShaderSource("vertShader_4_1.glsl");
-	string fragShaderStr = file_utils::readShaderSource("fragShader_4_1.glsl");
-
-	const char* vertShaderSrc = vertShaderStr.c_str();
-	const char* fragShaderSrc = fragShaderStr.c_str();
-
-	glShaderSource(vShader, 1, &vertShaderSrc, NULL);
-	glShaderSource(fShader, 1, &fragShaderSrc, NULL);
-
-	glCompileShader(vShader);
-	log_utils::checkOpenGLError();
-	glGetShaderiv(vShader, GL_COMPILE_STATUS, &vertCompiled);
-	if (vertCompiled != 1) {
-		std::cout << "vertex compilation failed" << std::endl;
-		log_utils::printShaderLog(vShader);
-	}
-
-	glCompileShader(fShader);
-	log_utils::checkOpenGLError();
-	glGetShaderiv(fShader, GL_COMPILE_STATUS, &fragCompiled);
-	if (fragCompiled != 1) {
-		std::cout << "fragment compilation failed" << std::endl;
-		log_utils::printShaderLog(fShader);
-	}
-
-	GLuint vfProgram = glCreateProgram();
-	glAttachShader(vfProgram, vShader);
-	glAttachShader(vfProgram, fShader);
-
-	glLinkProgram(vfProgram);
-	log_utils::checkOpenGLError();
-	glGetProgramiv(vfProgram, GL_LINK_STATUS, &linked);
-	if (linked != 1) {
-		std::cout << "linking failed" << std::endl;
-		log_utils::printProgramLog(vfProgram);
-	}
-
-	return vfProgram;
-}
-
 void Program4_1::init(GLFWwindow* window) {
-	renderingProgram = createShaderProgram();
+	renderingProgram = shader_utils::createShaderProgram("vertShader_4_1.glsl", "fragShader_4_1.glsl");
 	cameraX = 0.0f; cameraY = 0.0f; cameraZ = 8.0f;
 	cubeLocX = 0.0f; cubeLocY = -2.0f; cubeLocZ = 0.0f;
 	setupVertices();

@@ -8,8 +8,7 @@
 #include <fstream>  
 #include <string>  
 #include <cmath>
-#include "log_utils.h"  
-#include "file_utils.h"
+#include "utils.h"
 
 #define numVAOs 1  
 #define numVBOs 2  
