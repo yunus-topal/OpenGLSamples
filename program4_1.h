@@ -22,7 +22,7 @@ private:
 	GLuint vbo[numVBOs];  
 
 	// allocate variables used in display() function, so that they won’t need to be allocated during rendering
-	GLuint mvLoc, pLoc;
+	GLuint pLoc, vLoc, tfLoc;
 	int width, height;
 	float aspect;
 	glm::mat4 pMat, vMat, mMat, mvMat;

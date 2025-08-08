@@ -4,7 +4,7 @@ using namespace std;
 
 void Program4_1::init(GLFWwindow* window) {
 	renderingProgram = shader_utils::createShaderProgram("vertShader_4_1.glsl", "fragShader_4_1.glsl");
-	cameraX = 0.0f; cameraY = 0.0f; cameraZ = 8.0f;
+	cameraX = 0.0f; cameraY = 0.0f; cameraZ = 58.0f;
 	cubeLocX = 0.0f; cubeLocY = -2.0f; cubeLocZ = 0.0f;
 	setupVertices();
 }
@@ -15,8 +15,10 @@ void Program4_1::display(GLFWwindow* window, double currentTime) {
 	glUseProgram(renderingProgram);
 
 	// get the uniform variables for the MV and projection matrices
-	mvLoc = glGetUniformLocation(renderingProgram, "mv_matrix");
+	//mvLoc = glGetUniformLocation(renderingProgram, "mv_matrix");
 	pLoc = glGetUniformLocation(renderingProgram, "p_matrix");
+	vLoc = glGetUniformLocation(renderingProgram, "v_matrix");
+	tfLoc = glGetUniformLocation(renderingProgram, "tf");
 
 	// build perspective matrix
 	glfwGetFramebufferSize(window, &width, &height);
@@ -26,12 +28,15 @@ void Program4_1::display(GLFWwindow* window, double currentTime) {
 	// build view matrix, model matrix, and model-view matrix
 	vMat = glm::translate(glm::mat4(1.0f), glm::vec3(-cameraX, -cameraY, -cameraZ));
 	//mMat = glm::translate(glm::mat4(1.0f), glm::vec3(cubeLocX, cubeLocY, cubeLocZ));
-	mMat = moveCube(currentTime);
-	mvMat = vMat * mMat;
+	//mMat = moveCube(currentTime);
+	//mvMat = vMat * mMat;
 
 	// copy perspective and MV matrices to corresponding uniform variables
-	glUniformMatrix4fv(mvLoc, 1, GL_FALSE, glm::value_ptr(mvMat));
+	//glUniformMatrix4fv(mvLoc, 1, GL_FALSE, glm::value_ptr(mvMat));
 	glUniformMatrix4fv(pLoc, 1, GL_FALSE, glm::value_ptr(pMat));
+	glUniformMatrix4fv(vLoc, 1, GL_FALSE, glm::value_ptr(vMat));
+	auto timeFactor = (float)currentTime;
+	glUniform1f(tfLoc,timeFactor);
 
 	// associate VBO with the corresponding vertex attribute in the vertex shader
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
@@ -41,7 +46,7 @@ void Program4_1::display(GLFWwindow* window, double currentTime) {
 	// adjust OpenGL settings and draw model
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
-	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glDrawArraysInstanced(GL_TRIANGLES, 0, 36, 20);
 }
 
 Program4_1::Program4_1() {
