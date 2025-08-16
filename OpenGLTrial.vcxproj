@@ -135,6 +135,7 @@
     <ClCompile Include="program2_3.cpp" />
     <ClCompile Include="program2_4.cpp" />
     <ClCompile Include="program4_1.cpp" />
+    <ClCompile Include="program4_3.cpp" />
     <ClCompile Include="shader_utils.cpp" />
     <ClCompile Include="transform_utils.cpp" />
   </ItemGroup>
@@ -149,14 +150,17 @@
     <ClInclude Include="program2_3.h" />
     <ClInclude Include="program2_4.h" />
     <ClInclude Include="program4_1.h" />
+    <ClInclude Include="program4_3.h" />
     <ClInclude Include="shader_utils.h" />
     <ClInclude Include="transform_utils.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragShader_2_4.glsl" />
+    <None Include="fragShader_4_3.glsl" />
     <None Include="vertShader_2_4.glsl" />
     <None Include="vertShader_4_1.glsl" />
+    <None Include="vertShader_4_3.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
