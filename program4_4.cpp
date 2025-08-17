@@ -17,6 +17,7 @@ void Program4_4::display(GLFWwindow* window, double currentTime) {
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glUseProgram(renderingProgram);
+	glEnable(GL_CULL_FACE);
 
 	// get the uniform variables for the MV and projection matrices
 	mvLoc = glGetUniformLocation(renderingProgram, "mv_matrix");
@@ -44,6 +45,23 @@ void Program4_4::display(GLFWwindow* window, double currentTime) {
 	glDrawArrays(GL_TRIANGLES, 0, 18);
 	mvStack.pop(); // pop the sun rotation matrix
 
+	// ----------------------  cube == mars  -------------------------------------------
+	mvStack.push(mvStack.top());
+	mvStack.top() *= glm::translate(glm::mat4(1.0f), glm::vec3(0.0, cos((float)currentTime) * 4.0, sin((float)currentTime) * 4.0));
+	mvStack.push(mvStack.top());
+	mvStack.top() *= glm::rotate(glm::mat4(1.0f), (float)currentTime, glm::vec3(1.0, 0.0, 0.0));
+	mvStack.push(mvStack.top());
+	mvStack.top() *= glm::scale(glm::mat4(1.0f), glm::vec3(0.3f, 0.3f, 0.3f));
+
+	glUniformMatrix4fv(mvLoc, 1, GL_FALSE, glm::value_ptr(mvStack.top()));
+	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(0);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+	mvStack.pop(); // pop the mars translate matrix
+	mvStack.pop(); // pop the mars rotation matrix
+	mvStack.pop(); // pop the mars scale matrix
+
 	// ----------------------  cube == earth  -------------------------------------------
 	mvStack.push(mvStack.top());
 	mvStack.top() *= glm::translate(glm::mat4(1.0f), glm::vec3(sin((float)currentTime) * 4.0, 0.0f, cos((float)currentTime) * 4.0));
@@ -59,6 +77,7 @@ void Program4_4::display(GLFWwindow* window, double currentTime) {
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 	mvStack.pop(); 
 	mvStack.pop(); // pop the earth scale matrix
+
 
 	//-----------------------  smaller cube == moon  ----------------------------------
 	mvStack.push(mvStack.top());
