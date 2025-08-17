@@ -72,6 +72,9 @@
     <ClCompile Include="program4_3.cpp">
       <Filter>Source Files\Chapter4</Filter>
     </ClCompile>
+    <ClCompile Include="program4_4.cpp">
+      <Filter>Source Files\Chapter4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program2_2.h">
@@ -116,6 +119,9 @@
     <ClInclude Include="program4_3.h">
       <Filter>Header Files\Chapter4</Filter>
     </ClInclude>
+    <ClInclude Include="program4_4.h">
+      <Filter>Header Files\Chapter4</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertShader_2_4.glsl">
@@ -131,6 +137,12 @@
       <Filter>Resource Files\Chapter4</Filter>
     </None>
     <None Include="vertShader_4_3.glsl">
+      <Filter>Resource Files\Chapter4</Filter>
+    </None>
+    <None Include="fragShader_4_4.glsl">
+      <Filter>Resource Files\Chapter4</Filter>
+    </None>
+    <None Include="vertShader_4_4.glsl">
       <Filter>Resource Files\Chapter4</Filter>
     </None>
   </ItemGroup>
