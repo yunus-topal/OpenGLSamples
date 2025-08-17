@@ -8,6 +8,9 @@ void Program4_4::init(GLFWwindow* window) {
 	cubeLocX = 0.0f; cubeLocY = -2.0f; cubeLocZ = 0.0f;
 	pyrLocX = 2.0f; pyrLocY = 0.0f; pyrLocZ = 1.0f;
 	setupVertices();
+	glfwGetFramebufferSize(window, &width, &height);
+	aspect = (float)width / (float)height;
+	pMat = glm::perspective(1.0472f, aspect, 0.1f, 1000.0f);
 }
 void Program4_4::display(GLFWwindow* window, double currentTime) {
 	glClear(GL_DEPTH_BUFFER_BIT);
@@ -19,12 +22,8 @@ void Program4_4::display(GLFWwindow* window, double currentTime) {
 	mvLoc = glGetUniformLocation(renderingProgram, "mv_matrix");
 	pLoc = glGetUniformLocation(renderingProgram, "p_matrix");
 
-	// build perspective matrix
-	glfwGetFramebufferSize(window, &width, &height);
-	aspect = (float)width / (float)height;
-	pMat = glm::perspective(1.0472f, aspect, 0.1f, 1000.0f); // 1.0472 radians = 60 degrees
+	// load perspective matrix
 	glUniformMatrix4fv(pLoc, 1, GL_FALSE, glm::value_ptr(pMat));
-
 
 	// build view matrix, model matrix, and model-view matrix
 	vMat = glm::translate(glm::mat4(1.0f), glm::vec3(-cameraX, -cameraY, -cameraZ));
@@ -87,6 +86,13 @@ void Program4_4::execute() {
 	glfwMakeContextCurrent(window);
 	if (glewInit() != GLEW_OK) { exit(EXIT_FAILURE); }
 	glfwSwapInterval(1);
+
+	glfwSetWindowUserPointer(window, this);
+	glfwSetWindowSizeCallback(window, [](GLFWwindow* w, int newWidth, int newHeight) {
+		auto* self = static_cast<Program4_4*>(glfwGetWindowUserPointer(w));
+		self->window_reshape_callback(newWidth, newHeight);
+		});
+
 	init(window);
 	while (!glfwWindowShouldClose(window)) {
 		display(window, glfwGetTime());
@@ -128,14 +134,10 @@ void Program4_4::setupVertices(void) {
 	glBufferData(GL_ARRAY_BUFFER, sizeof(pyramidPositions), pyramidPositions, GL_STATIC_DRAW);
 }
 
-glm::mat4 Program4_4::moveCube(double currentTime) {
-	auto tMat = glm::translate(glm::mat4(1.0f),
-		glm::vec3(sin(0.35f * currentTime) * 2.0f, cos(0.52f * currentTime) * 2.0f, sin(0.7f * currentTime) * 2.0f));
-	auto rMat = glm::rotate(glm::mat4(1.0f), 1.75f * (float)currentTime, glm::vec3(0.0f, 1.0f, 0.0f));
-	rMat = glm::rotate(rMat, 1.75f * (float)currentTime, glm::vec3(1.0f, 0.0f, 0.0f));
-	rMat = glm::rotate(rMat, 1.75f * (float)currentTime, glm::vec3(0.0f, 0.0f, 1.0f));
-	// the 1.75 adjusts the rotation speed
-	mMat = tMat * rMat;
-
-	return mMat;
+void Program4_4::window_reshape_callback(int newWidth, int newHeight) {
+	glViewport(0, 0, newWidth, newHeight);
+	width = newWidth;
+	height = newHeight;
+	aspect = (float)width / (float)height;
+	pMat = glm::perspective(1.0472f, aspect, 0.1f, 1000.0f); // 1.0472 radians = 60 degrees
 }

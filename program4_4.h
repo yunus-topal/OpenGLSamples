@@ -27,14 +27,14 @@ private:
 	GLuint pLoc, mvLoc;
 	int width, height;
 	float aspect;
-	glm::mat4 pMat, vMat, mMat, mvMat;
+	glm::mat4 pMat, vMat, mvMat;
 
 	std::stack<glm::mat4> mvStack;
 
 	void setupVertices(void);
-	glm::mat4 moveCube(double currentTime);
 	void init(GLFWwindow* window);
 	void display(GLFWwindow* window, double currentTime);
+	void window_reshape_callback(int newWidth, int newHeight);
 
 public:
 	void execute();
