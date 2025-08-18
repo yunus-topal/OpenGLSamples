@@ -37,6 +37,15 @@
     <Filter Include="Resource Files\Chapter4">
       <UniqueIdentifier>{16c6df8a-9b99-4414-9595-73f5d6feb2d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Chapter5">
+      <UniqueIdentifier>{0f584bc0-27b6-4a50-a3f5-e69276b551fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter5">
+      <UniqueIdentifier>{b2f821de-540c-4241-8d2c-f3e212a108f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Chapter5">
+      <UniqueIdentifier>{955727aa-928b-4766-adcb-611e82f6edb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="program4_4.cpp">
       <Filter>Source Files\Chapter4</Filter>
+    </ClCompile>
+    <ClCompile Include="program5_1.cpp">
+      <Filter>Source Files\Chapter5</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +134,12 @@
     <ClInclude Include="program4_4.h">
       <Filter>Header Files\Chapter4</Filter>
     </ClInclude>
+    <ClInclude Include="program5_1.h">
+      <Filter>Header Files\Chapter5</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter5.h">
+      <Filter>Header Files\Chapter5</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertShader_2_4.glsl">
@@ -144,6 +162,12 @@
     </None>
     <None Include="vertShader_4_4.glsl">
       <Filter>Resource Files\Chapter4</Filter>
+    </None>
+    <None Include="fragShader_5_1.glsl">
+      <Filter>Resource Files\Chapter5</Filter>
+    </None>
+    <None Include="vertShader_5_1.glsl">
+      <Filter>Resource Files\Chapter5</Filter>
     </None>
   </ItemGroup>
 </Project>
