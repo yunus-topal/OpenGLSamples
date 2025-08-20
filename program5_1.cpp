@@ -56,6 +56,8 @@ void Program5_1::display(GLFWwindow* window, double currentTime) {
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, brickTexture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glGenerateMipmap(GL_TEXTURE_2D);
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LEQUAL);
