@@ -46,6 +46,12 @@
     <Filter Include="Resource Files\Chapter5">
       <UniqueIdentifier>{955727aa-928b-4766-adcb-611e82f6edb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Chapter6">
+      <UniqueIdentifier>{8b3db509-e983-4fc7-8b68-fd364cce00f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter6">
+      <UniqueIdentifier>{31681473-6655-4fc6-b641-60704d5dac6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -86,6 +92,12 @@
     </ClCompile>
     <ClCompile Include="program5_1.cpp">
       <Filter>Source Files\Chapter5</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="program6_1.cpp">
+      <Filter>Source Files\Chapter6</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="chapter5.h">
       <Filter>Header Files\Chapter5</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="program6_1.h">
+      <Filter>Header Files\Chapter6</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
