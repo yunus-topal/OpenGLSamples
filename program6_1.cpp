@@ -86,10 +86,17 @@ void Program6_1::execute() {
 		});
 
 	init(window);
+	lastFrameTime = glfwGetTime();
+
 	while (!glfwWindowShouldClose(window)) {
-		display(window, glfwGetTime());
-		glfwSwapBuffers(window);
+		double now = glfwGetTime();
+		float dt = static_cast<float>(now - lastFrameTime);
+		lastFrameTime = now;
+
 		glfwPollEvents();
+		handleInput(window, dt);
+		display(window, now);
+		glfwSwapBuffers(window);
 	}
 	glfwDestroyWindow(window);
 	glfwTerminate();
@@ -138,4 +145,21 @@ void Program6_1::window_reshape_callback(int newWidth, int newHeight) {
 	height = newHeight;
 	aspect = (float)width / (float)height;
 	pMat = glm::perspective(1.0472f, aspect, 0.1f, 1000.0f); // 1.0472 radians = 60 degrees
+}
+
+void Program6_1::handleInput(GLFWwindow* window, float dt) {
+	float v = moveSpeed * dt;
+
+	// WASD: left/right, forward/back (world axes)
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) cameraZ -= v; // forward
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) cameraZ += v; // back
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) cameraX -= v; // left
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) cameraX += v; // right
+
+	// Q/E: down/up
+	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) cameraY -= v; // down
+	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) cameraY += v; // up
+
+	// Optional: ESC to quit
+	//if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) glfwSetWindowShouldClose(window, GLFW_TRUE);
 }

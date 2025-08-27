@@ -19,6 +19,10 @@
 class Program6_1 {
 private:
 	float cameraX, cameraY, cameraZ;
+	// for camera movement
+	float moveSpeed = 6.0f;     // units per second
+	double lastFrameTime = 0.0; // for delta time
+
 	float cubeLocX, cubeLocY, cubeLocZ;
 	float pyrLocX, pyrLocY, pyrLocZ;
 	GLuint renderingProgram;
@@ -39,6 +43,7 @@ private:
 	void init(GLFWwindow* window);
 	void display(GLFWwindow* window, double currentTime);
 	void window_reshape_callback(int newWidth, int newHeight);
+	void handleInput(GLFWwindow* window, float dt);
 
 public:
 	void execute();
