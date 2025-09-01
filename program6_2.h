@@ -30,7 +30,7 @@ private:
 	GLuint vao[numVAOs];
 	GLuint vbo[numVBOs];
 
-	Torus myTorus = Torus();
+	Torus myTorus = Torus(0.9, 0.5, 24, 10);
 	// allocate variables used in display() function, so that they won’t need to be allocated during rendering
 	GLuint pLoc, mvLoc;
 	int width, height;

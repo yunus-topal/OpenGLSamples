@@ -5,13 +5,23 @@
 
 using namespace std;
 Torus::Torus() {
-	prec = 48;
+	precV = 48;
+	precU = 48;
 	inner = 0.5f;
 	outer = 0.2f;
 	init();
 }
-Torus::Torus(float innerRadius, float outerRadius, int precIn) {
-	prec = precIn;
+Torus::Torus(float innerRadius, float outerRadius, int prec) {
+	precU = prec;   // around the tube
+	precV = prec;
+	inner = innerRadius;
+	outer = outerRadius;
+	init();
+}
+
+Torus::Torus(float innerRadius, float outerRadius, int spherePrec, int ringCount) {
+	precU = spherePrec;   // around the tube
+	precV = ringCount;   // number of rings
 	inner = innerRadius;
 	outer = outerRadius;
 	init();
@@ -20,23 +30,24 @@ Torus::Torus(float innerRadius, float outerRadius, int precIn) {
 float Torus::toRadians(float degrees) { return (degrees * 2.0f * 3.14159f) / 360.0f; }
 
 void Torus::init() {
-	numVertices = (prec + 1) * (prec + 1);
-	numIndices = prec * prec * 6;
-	for (int i = 0; i < numVertices; i++) { vertices.push_back(glm::vec3()); }
-	for (int i = 0; i < numVertices; i++) { texCoords.push_back(glm::vec2()); }
-	for (int i = 0; i < numVertices; i++) { normals.push_back(glm::vec3()); }
-	for (int i = 0; i < numVertices; i++) { sTangents.push_back(glm::vec3()); }
-	for (int i = 0; i < numVertices; i++) { tTangents.push_back(glm::vec3()); }
-	for (int i = 0; i < numIndices; i++) { indices.push_back(0); }
-	// calculate first ring
-	for (int i = 0; i < prec + 1; i++) {
-		float amt = toRadians(i * 360.0f / prec);
+	numVertices = (precU + 1) * (precV + 1);
+	numIndices = precU * precV * 6;
+	vertices.resize(numVertices);
+	texCoords.resize(numVertices);
+	normals.resize(numVertices);
+	sTangents.resize(numVertices);
+	tTangents.resize(numVertices);
+	indices.resize(numIndices);
+
+	// Build first ring (v = 0): the tube cross-section
+	for (int i = 0; i < precU + 1; i++) {
+		float amt = toRadians(i * 360.0f / precU);
 		// build the ring by rotating points around the origin, then moving them outward
 		glm::mat4 rMat = glm::rotate(glm::mat4(1.0f), amt, glm::vec3(0.0f, 0.0f, 1.0f));
 		glm::vec3 initPos(rMat * glm::vec4(0.0f, outer, 0.0f, 1.0f));
 		vertices[i] = glm::vec3(initPos + glm::vec3(inner, 0.0f, 0.0f));
 		// compute texture coordinates for each vertex on the ring
-		texCoords[i] = glm::vec2(0.0f, ((float)i / (float)prec));
+		texCoords[i] = glm::vec2(0.0f, ((float)i / (float)precU));
 		// compute tangents and normals -- first tangent is Y-axis rotated around Z
 		rMat = glm::rotate(glm::mat4(1.0f), amt + (3.14159f / 2.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 		tTangents[i] = glm::vec3(rMat * glm::vec4(0.0f, -1.0f, 0.0f, 1.0f));
@@ -44,33 +55,36 @@ void Torus::init() {
 		normals[i] = glm::cross(tTangents[i], sTangents[i]); // their X-product is the normal.
 	}
 	// rotate the first ring about Y to get the other rings
-	for (int ring = 1; ring < prec + 1; ring++) {
-		for (int vert = 0; vert < prec + 1; vert++) {
-			// rotate the vertex positions of the original ring around the Y axis
-			float amt = (float)(toRadians(ring * 360.0f / prec));
-			glm::mat4 rMat = glm::rotate(glm::mat4(1.0f), amt, glm::vec3(0.0f, 1.0f, 0.0f));
-			vertices[ring * (prec + 1) + vert] = glm::vec3(rMat * glm::vec4(vertices[vert], 1.0f));
-			// compute the texture coordinates for the vertices in the new rings
-			texCoords[ring * (prec + 1) + vert] = glm::vec2((float)ring * 2.0f / (float)prec, texCoords[vert].t);
-			// rotate the tangent and bitangent vectors around the Y axis
-			rMat = glm::rotate(glm::mat4(1.0f), amt, glm::vec3(0.0f, 1.0f, 0.0f));
-			sTangents[ring * (prec + 1) + vert] = glm::vec3(rMat * glm::vec4(sTangents[vert], 1.0f));
-			rMat = glm::rotate(glm::mat4(1.0f), amt, glm::vec3(0.0f, 1.0f, 0.0f));
-			tTangents[ring * (prec + 1) + vert] = glm::vec3(rMat * glm::vec4(tTangents[vert], 1.0f));
-			// rotate the normal vector around the Y axis
-			rMat = glm::rotate(glm::mat4(1.0f), amt, glm::vec3(0.0f, 1.0f, 0.0f));
-			normals[ring * (prec + 1) + vert] = glm::vec3(rMat * glm::vec4(normals[vert], 1.0f));
+	for (int ring = 1; ring < precV + 1; ring++) {
+		// rotate the vertex positions of the original ring around the Y axis
+		float amt = (float)(toRadians(ring * 360.0f / precV));
+		glm::mat4 rMat = glm::rotate(glm::mat4(1.0f), amt, glm::vec3(0.0f, 1.0f, 0.0f));
+
+		for (int vert = 0; vert < precU + 1; vert++) {
+			int dst = ring * (precU + 1) + vert;
+			
+			vertices[dst] = glm::vec3(rMat * glm::vec4(vertices[vert], 1.0f));
+			sTangents[dst] = glm::vec3(rMat * glm::vec4(sTangents[vert], 1.0f));
+			tTangents[dst] = glm::vec3(rMat * glm::vec4(tTangents[vert], 1.0f));
+			normals[dst] = glm::vec3(rMat * glm::vec4(normals[vert], 1.0f));
+			texCoords[dst] = glm::vec2(2.0f * (float)ring / precV, (float)vert / precU);
+
 		}
 	}
 	// calculate triangle indices corresponding to the two triangles built per vertex
-	for (int ring = 0; ring < prec; ring++) {
-		for (int vert = 0; vert < prec; vert++) {
-			indices[((ring * prec + vert) * 2) * 3 + 0] = ring * (prec + 1) + vert;
-			indices[((ring * prec + vert) * 2) * 3 + 1] = (ring + 1) * (prec + 1) + vert;
-			indices[((ring * prec + vert) * 2) * 3 + 2] = ring * (prec + 1) + vert + 1;
-			indices[((ring * prec + vert) * 2 + 1) * 3 + 0] = ring * (prec + 1) + vert + 1;
-			indices[((ring * prec + vert) * 2 + 1) * 3 + 1] = (ring + 1) * (prec + 1) + vert;
-			indices[((ring * prec + vert) * 2 + 1) * 3 + 2] = (ring + 1) * (prec + 1) + vert + 1;
+	int k = 0;
+	for (int v = 0; v < precV; ++v) {
+		for (int u = 0; u < precU; ++u) {
+			int row0 = v * (precU + 1);
+			int row1 = (v + 1) * (precU + 1);
+
+			indices[k++] = row0 + u;
+			indices[k++] = row1 + u;
+			indices[k++] = row0 + u + 1;
+
+			indices[k++] = row0 + u + 1;
+			indices[k++] = row1 + u;
+			indices[k++] = row1 + u + 1;
 		}
 	}
 }

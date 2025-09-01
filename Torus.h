@@ -7,7 +7,7 @@ class Torus
 private:
 	int numVertices;
 	int numIndices;
-	int prec;
+	int precU, precV;
 	float inner;
 	float outer;
 	std::vector<int> indices;
@@ -21,6 +21,7 @@ private:
 public:
 	Torus();
 	Torus(float innerRadius, float outerRadius, int prec);
+	Torus(float innerRadius, float outerRadius, int spherePrec, int ringCount);
 	int getNumVertices();
 	int getNumIndices();
 	std::vector<int> getIndices();
