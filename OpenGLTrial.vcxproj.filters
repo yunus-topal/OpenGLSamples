@@ -99,6 +99,12 @@
     <ClCompile Include="program6_1.cpp">
       <Filter>Source Files\Chapter6</Filter>
     </ClCompile>
+    <ClCompile Include="Torus.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="program6_2.cpp">
+      <Filter>Source Files\Chapter6</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program2_2.h">
@@ -156,6 +162,15 @@
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="program6_1.h">
+      <Filter>Header Files\Chapter6</Filter>
+    </ClInclude>
+    <ClInclude Include="Torus.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="program6_2.h">
+      <Filter>Header Files\Chapter6</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter6.h">
       <Filter>Header Files\Chapter6</Filter>
     </ClInclude>
   </ItemGroup>

@@ -139,14 +139,17 @@
     <ClCompile Include="program4_4.cpp" />
     <ClCompile Include="program5_1.cpp" />
     <ClCompile Include="program6_1.cpp" />
+    <ClCompile Include="program6_2.cpp" />
     <ClCompile Include="shader_utils.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Torus.cpp" />
     <ClCompile Include="transform_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chapter2.h" />
     <ClInclude Include="chapter4.h" />
     <ClInclude Include="chapter5.h" />
+    <ClInclude Include="chapter6.h" />
     <ClInclude Include="file_utils.h" />
     <ClInclude Include="fragShader_4_1.glsl" />
     <ClInclude Include="log_utils.h" />
@@ -159,8 +162,10 @@
     <ClInclude Include="program4_4.h" />
     <ClInclude Include="program5_1.h" />
     <ClInclude Include="program6_1.h" />
+    <ClInclude Include="program6_2.h" />
     <ClInclude Include="shader_utils.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Torus.h" />
     <ClInclude Include="transform_utils.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>

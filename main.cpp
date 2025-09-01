@@ -2,7 +2,7 @@
 #include "chapter4.h"
 #include "chapter2.h"
 #include "chapter5.h"
-#include "program6_1.h"
+#include "chapter6.h"
 #include "transform_utils.h"
 
 int main() {
@@ -11,7 +11,11 @@ int main() {
 	//Program2_1 y = Program2_1();
 	//y.execute();
 
-	Program6_1 x = Program6_1();
+
+	Program6_2 x = Program6_2();
+	
+	//Program6_1 x = Program6_1();
+
 	x.execute();
 }
 
