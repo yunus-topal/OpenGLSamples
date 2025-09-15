@@ -130,6 +130,7 @@
     <ClCompile Include="file_utils.cpp" />
     <ClCompile Include="log_utils.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ImportedModel.cpp" />
     <ClCompile Include="program2_1.cpp" />
     <ClCompile Include="program2_2.cpp" />
     <ClCompile Include="program2_3.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="program5_1.cpp" />
     <ClCompile Include="program6_1.cpp" />
     <ClCompile Include="program6_2.cpp" />
+    <ClCompile Include="program6_3.cpp" />
     <ClCompile Include="shader_utils.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Torus.cpp" />
@@ -153,6 +155,7 @@
     <ClInclude Include="file_utils.h" />
     <ClInclude Include="fragShader_4_1.glsl" />
     <ClInclude Include="log_utils.h" />
+    <ClInclude Include="ImportedModel.h" />
     <ClInclude Include="program2_1.h" />
     <ClInclude Include="program2_2.h" />
     <ClInclude Include="program2_3.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="program5_1.h" />
     <ClInclude Include="program6_1.h" />
     <ClInclude Include="program6_2.h" />
+    <ClInclude Include="program6_3.h" />
     <ClInclude Include="shader_utils.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Torus.h" />
@@ -174,11 +178,13 @@
     <None Include="fragShader_4_3.glsl" />
     <None Include="fragShader_4_4.glsl" />
     <None Include="fragShader_5_1.glsl" />
+    <None Include="fragShader_6_3.glsl" />
     <None Include="vertShader_2_4.glsl" />
     <None Include="vertShader_4_1.glsl" />
     <None Include="vertShader_4_3.glsl" />
     <None Include="vertShader_4_4.glsl" />
     <None Include="vertShader_5_1.glsl" />
+    <None Include="vertShader_6_3.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

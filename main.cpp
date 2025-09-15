@@ -12,7 +12,7 @@ int main() {
 	//y.execute();
 
 
-	Program6_2 x = Program6_2();
+	Program6_3 x = Program6_3();
 	
 	//Program6_1 x = Program6_1();
 
