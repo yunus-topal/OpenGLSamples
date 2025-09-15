@@ -65,6 +65,8 @@ void Program6_3::display(GLFWwindow* window, double currentTime) {
 	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(2);
 
+	
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	// bind indices of torus
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo[3]);
 
