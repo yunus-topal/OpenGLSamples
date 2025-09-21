@@ -3,7 +3,7 @@
 using namespace std;
 
 void Program7_1::init(GLFWwindow* window) {
-	renderingProgram = shader_utils::createShaderProgram("vertShader_7_1.glsl", "fragShader_7_1.glsl");
+	renderingProgram = shader_utils::createShaderProgram("vertShader_7_3.glsl", "fragShader_7_3.glsl");
 	cameraX = 0.0f; cameraY = 0.0f; cameraZ = 10.0f;
 	modelLocX = 0.0f; modelLocY = 0.0f; modelLocZ = 1.0f;
 	//setupImportVertices();
