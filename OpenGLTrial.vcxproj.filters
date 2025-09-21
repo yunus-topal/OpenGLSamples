@@ -55,6 +55,15 @@
     <Filter Include="Resource Files\Chapter6">
       <UniqueIdentifier>{e104bc5a-6006-4cdb-84c5-f37fe5f86947}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Chapter7">
+      <UniqueIdentifier>{9556ae8c-d6ab-45fb-8ea7-70fdbdf1151e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Chapter7">
+      <UniqueIdentifier>{ee5f0f24-0cb7-49f8-b4dc-5238870b5eb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Chapter7">
+      <UniqueIdentifier>{114576cd-c772-4966-8ccf-49e1363db8b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -113,6 +122,9 @@
     </ClCompile>
     <ClCompile Include="program6_3.cpp">
       <Filter>Source Files\Chapter6</Filter>
+    </ClCompile>
+    <ClCompile Include="program7_1.cpp">
+      <Filter>Source Files\Chapter7</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +200,12 @@
     <ClInclude Include="program6_3.h">
       <Filter>Header Files\Chapter6</Filter>
     </ClInclude>
+    <ClInclude Include="chapter7.h">
+      <Filter>Header Files\Chapter7</Filter>
+    </ClInclude>
+    <ClInclude Include="program7_1.h">
+      <Filter>Header Files\Chapter7</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertShader_2_4.glsl">
@@ -222,6 +240,12 @@
     </None>
     <None Include="vertShader_6_3.glsl">
       <Filter>Resource Files\Chapter6</Filter>
+    </None>
+    <None Include="vertShader_7_1.glsl">
+      <Filter>Resource Files\Chapter7</Filter>
+    </None>
+    <None Include="fragShader_7_1.glsl">
+      <Filter>Resource Files\Chapter7</Filter>
     </None>
   </ItemGroup>
 </Project>

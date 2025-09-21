@@ -17,7 +17,6 @@ private:
 	std::vector<glm::vec3> sTangents;
 	std::vector<glm::vec3> tTangents;
 	void init();
-	float toRadians(float degrees);
 public:
 	Torus();
 	Torus(float innerRadius, float outerRadius, int prec);
@@ -30,4 +29,7 @@ public:
 	std::vector<glm::vec3> getNormals();
 	std::vector<glm::vec3> getStangents();
 	std::vector<glm::vec3> getTtangents();
+
+	float toRadians(float degrees);
+
 };

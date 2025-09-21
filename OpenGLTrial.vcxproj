@@ -142,6 +142,7 @@
     <ClCompile Include="program6_1.cpp" />
     <ClCompile Include="program6_2.cpp" />
     <ClCompile Include="program6_3.cpp" />
+    <ClCompile Include="program7_1.cpp" />
     <ClCompile Include="shader_utils.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Torus.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="chapter4.h" />
     <ClInclude Include="chapter5.h" />
     <ClInclude Include="chapter6.h" />
+    <ClInclude Include="chapter7.h" />
     <ClInclude Include="file_utils.h" />
     <ClInclude Include="fragShader_4_1.glsl" />
     <ClInclude Include="log_utils.h" />
@@ -167,6 +169,7 @@
     <ClInclude Include="program6_1.h" />
     <ClInclude Include="program6_2.h" />
     <ClInclude Include="program6_3.h" />
+    <ClInclude Include="program7_1.h" />
     <ClInclude Include="shader_utils.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Torus.h" />
@@ -179,6 +182,8 @@
     <None Include="fragShader_4_4.glsl" />
     <None Include="fragShader_5_1.glsl" />
     <None Include="fragShader_6_3.glsl" />
+    <None Include="fragShader_7_1.glsl" />
+    <None Include="vertShader_7_1.glsl" />
     <None Include="vertShader_2_4.glsl" />
     <None Include="vertShader_4_1.glsl" />
     <None Include="vertShader_4_3.glsl" />
