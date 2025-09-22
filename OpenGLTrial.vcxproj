@@ -185,6 +185,7 @@
     <None Include="fragShader_7_1.glsl" />
     <None Include="fragShader_7_2.glsl" />
     <None Include="fragShader_7_3.glsl" />
+    <None Include="fragShader_7_4.glsl" />
     <None Include="vertShader_7_1.glsl" />
     <None Include="vertShader_2_4.glsl" />
     <None Include="vertShader_4_1.glsl" />
@@ -194,6 +195,7 @@
     <None Include="vertShader_6_3.glsl" />
     <None Include="vertShader_7_2.glsl" />
     <None Include="vertShader_7_3.glsl" />
+    <None Include="vertShader_7_4.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

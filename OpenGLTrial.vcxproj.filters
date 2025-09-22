@@ -259,5 +259,11 @@
     <None Include="fragShader_7_3.glsl">
       <Filter>Resource Files\Chapter7</Filter>
     </None>
+    <None Include="vertShader_7_4.glsl">
+      <Filter>Resource Files\Chapter7</Filter>
+    </None>
+    <None Include="fragShader_7_4.glsl">
+      <Filter>Resource Files\Chapter7</Filter>
+    </None>
   </ItemGroup>
 </Project>

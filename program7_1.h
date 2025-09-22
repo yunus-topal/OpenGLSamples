@@ -52,7 +52,7 @@ private:
 	ImportedModel objModel = ImportedModel("teapot.obj");
 	Torus torusModel = Torus(0.7f, 0.3f, 48);
 
-
+	GLuint brickTexture;
 
 	GLuint pLoc, mLoc, vLoc, nLoc;
 	int width, height;

@@ -3,7 +3,9 @@
 using namespace std;
 
 void Program7_1::init(GLFWwindow* window) {
-	renderingProgram = shader_utils::createShaderProgram("vertShader_7_3.glsl", "fragShader_7_3.glsl");
+	brickTexture = file_utils::loadTexture("brick.jpg");
+
+	renderingProgram = shader_utils::createShaderProgram("vertShader_7_4.glsl", "fragShader_7_4.glsl");
 	cameraX = 0.0f; cameraY = 0.0f; cameraZ = 10.0f;
 	modelLocX = 0.0f; modelLocY = 0.0f; modelLocZ = 1.0f;
 	//setupImportVertices();
@@ -49,6 +51,16 @@ void Program7_1::display(GLFWwindow* window, double currentTime) {
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[2]);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(1);
+	// texture
+	glBindBuffer(GL_ARRAY_BUFFER, vbo[1]);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(2);
+
+	// setup textures
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, brickTexture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+
 
 	glEnable(GL_CULL_FACE);
 	glFrontFace(GL_CCW);
