@@ -19,3 +19,5 @@ static float* bronzeAmbient() { static float a[4] = { 0.2125f, 0.1275f, 0.0540f,
 static float* bronzeDiffuse() { static float a[4] = { 0.7140f, 0.4284f, 0.1814f, 1 }; return (float*)a; }
 static float* bronzeSpecular() { static float a[4] = { 0.3935f, 0.2719f, 0.1667f, 1 }; return (float*)a; }
 static float bronzeShininess() { return 25.6f; }
+
+static float toRadians(float degrees) { return (degrees * 2.0f * 3.14159f) / 360.0f; }

@@ -143,6 +143,7 @@
     <ClCompile Include="program6_2.cpp" />
     <ClCompile Include="program6_3.cpp" />
     <ClCompile Include="program7_1.cpp" />
+    <ClCompile Include="program8_1.cpp" />
     <ClCompile Include="shader_utils.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Torus.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="chapter5.h" />
     <ClInclude Include="chapter6.h" />
     <ClInclude Include="chapter7.h" />
+    <ClInclude Include="chapter8.h" />
     <ClInclude Include="file_utils.h" />
     <ClInclude Include="fragShader_4_1.glsl" />
     <ClInclude Include="log_utils.h" />
@@ -170,6 +172,7 @@
     <ClInclude Include="program6_2.h" />
     <ClInclude Include="program6_3.h" />
     <ClInclude Include="program7_1.h" />
+    <ClInclude Include="program8_1.h" />
     <ClInclude Include="shader_utils.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Torus.h" />
@@ -186,6 +189,8 @@
     <None Include="fragShader_7_2.glsl" />
     <None Include="fragShader_7_3.glsl" />
     <None Include="fragShader_7_4.glsl" />
+    <None Include="fragShader_8_1.glsl" />
+    <None Include="fragShader_8_1_0.glsl" />
     <None Include="vertShader_7_1.glsl" />
     <None Include="vertShader_2_4.glsl" />
     <None Include="vertShader_4_1.glsl" />
@@ -196,6 +201,8 @@
     <None Include="vertShader_7_2.glsl" />
     <None Include="vertShader_7_3.glsl" />
     <None Include="vertShader_7_4.glsl" />
+    <None Include="vertShader_8_1.glsl" />
+    <None Include="vertShader_8_1_0.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

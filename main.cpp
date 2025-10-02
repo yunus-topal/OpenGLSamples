@@ -4,6 +4,7 @@
 #include "chapter5.h"
 #include "chapter6.h"
 #include "chapter7.h"
+#include "chapter8.h"
 #include "transform_utils.h"
 
 int main() {
@@ -13,7 +14,7 @@ int main() {
 	//y.execute();
 
 
-	Program7_1 x = Program7_1();
+	Program8_1 x = Program8_1();
 	
 	//Program6_1 x = Program6_1();
 
