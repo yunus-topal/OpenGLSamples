@@ -289,7 +289,17 @@
     <None Include="vertShader_8_1.glsl">
       <Filter>Resource Files\Chapter8</Filter>
     </None>
-    <None Include="fragShader_8_1_0.glsl" />
-    <None Include="vertShader_8_1_0.glsl" />
+    <None Include="vertShader_8_1_0.glsl">
+      <Filter>Resource Files\Chapter8</Filter>
+    </None>
+    <None Include="fragShader_8_1_0.glsl">
+      <Filter>Resource Files\Chapter8</Filter>
+    </None>
+    <None Include="vertShader_8_1_1.glsl">
+      <Filter>Resource Files\Chapter8</Filter>
+    </None>
+    <None Include="fragShader_8_1_1.glsl">
+      <Filter>Resource Files\Chapter8</Filter>
+    </None>
   </ItemGroup>
 </Project>
